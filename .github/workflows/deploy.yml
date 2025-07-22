@@ -20,7 +20,6 @@ jobs:
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /home/ubuntu/aws-ec2-deploy
+            cd /home/ubuntu/awsrepo
             docker-compose pull
             docker-compose up -d --build
-

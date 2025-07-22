@@ -10,17 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: SSH Deploy to EC2
+      - name: Deploy via SSH
         uses: appleboy/ssh-action@v0.1.8
         with:
           host: ${{ secrets.EC2_INSTANCE_IP }}
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /Users/furkanaslan/Desktop/furkantask
+            cd /home/ubuntu/aws-ec2-deploy
             docker-compose pull
-            docker-compose up -d
+            docker-compose up -d --build
 

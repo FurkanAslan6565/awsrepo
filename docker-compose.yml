@@ -1,8 +1,7 @@
-version: '3.8'
 services:
   frontend:
     image: nginx:alpine
-    container_name: frontend
+    container_name: frontendawsrepo
     ports:
       - "8080:80"
     volumes:
@@ -15,7 +14,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: backend
+    container_name: furkanawsrepo
     ports:
       - "3000:3000"
     depends_on:
@@ -23,10 +22,11 @@ services:
     environment:
       - NODE_ENV=development
       - MONGO_URL=mongodb://mongo:27017/mydb
+    restart: always   # backend container’ı hata olursa restart etmesi için
 
   mongo:
     image: mongo:6
-    container_name: mongo
+
     restart: always
     ports:
       - "27017:27017"

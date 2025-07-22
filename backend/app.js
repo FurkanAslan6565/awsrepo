@@ -18,7 +18,7 @@ mongoose.connect(mongoURL)
 
 // Test endpointi
 app.get('/api/hello', (req, res) => {
-  res.json({ message: "✅ Backend API çalışıyor!" });
+  res.json({ message: "Backend API çalışıyor" });
 });
 
 // Ana sayfa endpointi

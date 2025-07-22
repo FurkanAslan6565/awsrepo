@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8" />
-    <title>Frontend</title>
+  <meta charset="UTF-8" />
+  <title>Frontend Test</title>
 </head>
 <body>
-    <h1>Merhaba, frontend çalışıyor!</h1>
-    <button id="backendBtn">Backend'e Sor</button>
-    <div id="backendResponse"></div>
-    <script>
-      document.getElementById('backendBtn').onclick = async () => {
-        const res = await fetch('http://localhost:3000/api/hello');
-
+  <h1>Merhaba, frontend çalışıyor!</h1>
+  <button id="backendBtn">Backend'e Sor</button>
+  <div id="backendResponse"></div>
+  <script>
+    document.getElementById('backendBtn').onclick = async () => {
+      try {
+        const res = await fetch('/api/hello');
+        if (!res.ok) throw new Error('HTTP status ' + res.status);
         const data = await res.json();
         document.getElementById('backendResponse').innerText = data.message;
+      } catch(e) {
+        document.getElementById('backendResponse').innerText = 'Hata: ' + e.message;
       }
-    </script>
+    }
+  </script>
 </body>
-</html> 
+</html>

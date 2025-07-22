@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Frontend</title>
+</head>
+<body>
+    <h1>Merhaba, frontend çalışıyor!</h1>
+    <button id="backendBtn">Backend'e Sor</button>
+    <div id="backendResponse"></div>
+    <script>
+      document.getElementById('backendBtn').onclick = async () => {
+        const res = await fetch('http://localhost:3000/api/hello');
+
+        const data = await res.json();
+        document.getElementById('backendResponse').innerText = data.message;
+      }
+    </script>
+</body>
+</html> 
